@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batman Academy - Excellence in Education</title>
+    <style>
+        /* ===== UNIVERSAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffdd00;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bat-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ffdd00 0%, #ffcc00 100%);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            display: inline-block;
+        }
+
+        /* Navigation Menu */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #ffdd00;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+            background-color: #ffdd00;
+            color: #1a1a1a;
+            border-radius: 3px;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffdd00;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== BANNER / HOME SECTION ===== */
+        .home {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #ffdd00 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 L30,40 L15,40 L40,65 L25,95 L50,70 L75,95 L60,65 L85,40 L70,40 Z" fill="%23ffdd00"/></svg>') no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            top: -100px;
+            right: -100px;
+        }
+
+        .home-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .home h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .home p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #f0f0f0;
+        }
+
+        .welcome-btn {
+            background-color: #ffdd00;
+            color: #1a1a1a;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .welcome-btn:hover {
+            background-color: #ffffff;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-message {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(255, 221, 0, 0.2);
+            border-left: 4px solid #ffdd00;
+            border-radius: 3px;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .about h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* ===== COURSES SECTION ===== */
+        .courses {
+            padding: 4rem 2rem;
+            background-color: #f9f9f9;
+        }
+
+        .courses h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+        }
+
+        .courses-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-card h3 {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .course-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: Arial, sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffdd00;
+            background-color: #fffef0;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background-color: #1a1a1a;
+            color: #ffdd00;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #ffdd00;
+            color: #1a1a1a;
+            transform: scale(1.02);
+        }
+
+        .form-error {
+            color: #d9534f;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        .form-success {
+            color: #28a745;
+            text-align: center;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffdd00;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            /* Header adjustments */
+            .header-container {
+                flex-wrap: wrap;
+            }
+
+            nav ul {
+                display: none;
+                gap: 1rem;
+                flex-direction: column;
+                width: 100%;
+                background-color: #2d2d2d;
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 0.5rem 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Home section adjustments */
+            .home h1 {
+                font-size: 2rem;
+            }
+
+            .home p {
+                font-size: 1rem;
+            }
+
+            /* About section adjustments */
+            .about h2 {
+                font-size: 2rem;
+            }
+
+            /* Courses section adjustments */
+            .courses h2 {
+                font-size: 2rem;
+            }
+
+            .courses-container {
+                grid-template-columns: 1fr;
+            }
+
+            /* Contact section adjustments */
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .home h1 {
+                font-size: 1.5rem;
+            }
+
+            .home {
+                padding: 2rem 1rem;
+                min-height: 300px;
+            }
+
+            .welcome-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="bat-logo"></div>
+                Batman Academy
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                    <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                    <li><a href="#courses" onclick="toggleMenu()">Courses</a></li>
+                    <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HOME SECTION ===== -->
+    <section id="home" class="home">
+        <div class="home-content">
+            <h1>🦇 Welcome to Batman Academy 🦇</h1>
+            <p>Excellence in Education for Tomorrow's Heroes</p>
+            <button class="welcome-btn" onclick="showWelcomeMessage()">Click for Welcome Message</button>
+            <div class="welcome-message" id="welcomeMessage">
+                <h3>🌟 Welcome to our School! 🌟</h3>
+                <p>We are committed to providing quality education and nurturing the potential in every student. Join us on this exciting journey of learning and growth!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section id="about" class="about">
+        <h2>About Batman Academy</h2>
+        <div class="about-content">
+            <p>
+                Batman Academy is a leading educational institution dedicated to fostering intellectual growth, critical thinking, and moral values. 
+                With a team of experienced educators and modern facilities, we provide a comprehensive learning environment that prepares students for success in a rapidly changing world.
+            </p>
+            <br>
+            <p>
+                Our mission is to empower students to become confident, compassionate, and capable individuals who contribute positively to society. 
+                We believe in a holistic approach to education that develops not just academics, but also character, creativity, and leadership skills.
+            </p>
+            <br>
+            <p>
+                Located in the heart of the city, Batman Academy welcomes students from all backgrounds and believes in creating an inclusive community where every student can thrive.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== COURSES SECTION ===== -->
+    <section id="courses" class="courses">
+        <h2>Our Courses</h2>
+        <div class="courses-container">
+            <!-- Course 1 -->
+            <div class="course-card">
+                <h3>📚 Mathematics</h3>
+                <p>Master mathematical concepts from basic arithmetic to advanced calculus. Develop problem-solving skills essential for engineering and science fields.</p>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="course-card">
+                <h3>🌍 Science & Technology</h3>
+                <p>Explore the wonders of physics, chemistry, and biology. Hands-on laboratory experience with modern equipment to understand real-world applications.</p>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="course-card">
+                <h3>📖 English & Literature</h3>
+                <p>Enhance communication and writing skills through studying classical and contemporary literature. Develop critical thinking and analytical abilities.</p>
+            </div>
+
+            <!-- Course 4 -->
+            <div class="course-card">
+                <h3>💻 Computer Science</h3>
+                <p>Learn programming, web development, and digital literacy. Prepare for the tech industry with hands-on coding projects and real-world applications.</p>
+            </div>
+
+            <!-- Course 5 -->
+            <div class="course-card">
+                <h3>🎨 Arts & Creativity</h3>
+                <p>Express yourself through painting, sculpture, and digital art. Develop creative thinking and artistic skills in a supportive environment.</p>
+            </div>
+
+            <!-- Course 6 -->
+            <div class="course-card">
+                <h3>🏃 Physical Education</h3>
+                <p>Build a healthy lifestyle through sports and fitness. Develop teamwork, discipline, and athletic excellence with experienced coaches.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form class="contact-form" onsubmit="validateForm(event)">
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required>
+                <div class="form-error" id="nameError"></div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+                <div class="form-error" id="emailError"></div>
+            </div>
+
+            <!-- Message Field -->
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required></textarea>
+                <div class="form-error" id="messageError"></div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Send Message</button>
+            <div class="form-success" id="formSuccess" style="display: none;">✓ Thank you! Your message has been sent successfully.</div>
+        </form>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 Batman Academy. All rights reserved.</p>
+        <p>📍 123 Gotham Street | ☎️ (555) 123-4567 | 📧 info@batmanacademy.edu</p>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== Toggle Mobile Menu =====
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+
+        // ===== Show Welcome Message =====
+        function showWelcomeMessage() {
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            if (welcomeMessage.style.display === 'none' || welcomeMessage.style.display === '') {
+                welcomeMessage.style.display = 'block';
+            } else {
+                welcomeMessage.style.display = 'none';
+            }
+        }
+
+        // ===== Form Validation =====
+        function validateForm(event) {
+            event.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Clear previous errors
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('messageError').textContent = '';
+            document.getElementById('formSuccess').style.display = 'none';
+
+            // Validation flags
+            let isValid = true;
+
+            // Validate name (not empty)
+            if (name === '') {
+                document.getElementById('nameError').textContent = '⚠️ Name is required';
+                isValid = false;
+            }
+
+            // Validate email (not empty and valid format)
+            if (email === '') {
+                document.getElementById('emailError').textContent = '⚠️ Email is required';
+                isValid = false;
+            } else if (!isValidEmail(email)) {
+                document.getElementById('emailError').textContent = '⚠️ Please enter a valid email address';
+                isValid = false;
+            }
+
+            // Validate message (not empty)
+            if (message === '') {
+                document.getElementById('messageError').textContent = '⚠️ Message is required';
+                isValid = false;
+            }
+
+            // If all validations pass, show success message
+            if (isValid) {
+                document.getElementById('formSuccess').style.display = 'block';
+                alert('🎉 Thank you for your message! We will get back to you soon.');
+                document.querySelector('.contact-form').reset();
+            }
+        }
+
+        // ===== Email Validation Function =====
+        function isValidEmail(email) {
+            // Simple email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // ===== Smooth Scrolling for Navigation =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
